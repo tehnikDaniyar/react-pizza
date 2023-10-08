@@ -3,8 +3,10 @@ import Header from './components/Header';
 import Categories from './components/Categories';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
+import pizzas from './assets/pizzas';
 
 function App() {
+  console.log(pizzas);
   return (
     <>
       <body>
@@ -18,8 +20,9 @@ function App() {
               </div>
               <h2 className='content__title'>Все пиццы</h2>
               <div className='content__items'>
-                <PizzaBlock title='Мексиканская' price={300} />
-                <PizzaBlock title='Чили' price={280} />
+                {pizzas.map((obj) => {
+                  return <PizzaBlock title={obj.title} price={obj.price} url={obj.imageUrl} />;
+                })}
               </div>
             </div>
           </div>

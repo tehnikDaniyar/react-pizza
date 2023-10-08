@@ -1,4 +1,4 @@
-import iconSvg from '../img/pizza-logo.svg';
+import iconSvg from '../assets/img/pizza-logo.svg';
 
 export default function Header() {
   return (

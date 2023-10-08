@@ -1,15 +1,11 @@
 import React from 'react';
 
-export default function PizzaBlock({ title, price }) {
+export default function PizzaBlock({ title, price, url }) {
   const [counterPizza, setCounterPizza] = React.useState(0);
 
   return (
     <div className='pizza-block'>
-      <img
-        className='pizza-block__image'
-        src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-        alt='Pizza'
-      />
+      <img className='pizza-block__image' src={url} alt='Pizza' />
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>
