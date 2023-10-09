@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function PizzaBlock({ title, price, url }) {
+export default function PizzaBlock({ title, price, imageUrl, id, types, sizes }) {
   const [counterPizza, setCounterPizza] = React.useState(0);
+  const [typePizza, setTypePizza] = useState(0);
+  const [sizeOfPizza, setrSizePizza] = useState(0);
+  const typesOfPizza = ['тонкое', 'традийционное'];
+
+  console.log(typePizza);
 
   return (
     <div className='pizza-block'>
-      <img className='pizza-block__image' src={url} alt='Pizza' />
+      <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>
-          <li className='active'>тонкое</li>
-          <li>традиционное</li>
+          {types.map((i) => {
+            return (
+              <li
+                key={i}
+                className={typePizza === i ? 'active' : ''}
+                onClick={() => setTypePizza(i)}
+              >
+                {typesOfPizza[i]}
+              </li>
+            );
+          })}
         </ul>
         <ul>
-          <li className='active'>26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => {
+            return (
+              <li
+                key={i}
+                className={sizeOfPizza === i ? 'active' : ''}
+                onClick={() => setrSizePizza(i)}
+              >
+                {size} см
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className='pizza-block__bottom'>

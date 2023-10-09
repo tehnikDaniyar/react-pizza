@@ -20,8 +20,8 @@ function App() {
               </div>
               <h2 className='content__title'>Все пиццы</h2>
               <div className='content__items'>
-                {pizzas.map((obj) => {
-                  return <PizzaBlock title={obj.title} price={obj.price} url={obj.imageUrl} />;
+                {pizzas.map((obj, i) => {
+                  return <PizzaBlock key={obj.id} {...obj} />;
                 })}
               </div>
             </div>
