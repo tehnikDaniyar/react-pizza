@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function PizzaBlock({ title, price, imageUrl, id, types, sizes }) {
   const [counterPizza, setCounterPizza] = React.useState(0);
@@ -6,7 +6,11 @@ export default function PizzaBlock({ title, price, imageUrl, id, types, sizes })
   const [sizeOfPizza, setrSizePizza] = useState(0);
   const typesOfPizza = ['тонкое', 'традийционное'];
 
-  console.log(typePizza);
+  useEffect(() => {
+    if (types.length === 1) {
+      setTypePizza(types[0]);
+    }
+  }, []);
 
   return (
     <div className='pizza-block'>

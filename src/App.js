@@ -1,12 +1,20 @@
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import './scss/app.scss';
 import Header from './components/Header';
 import Categories from './components/Categories';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
-import pizzas from './assets/pizzas';
 
 function App() {
-  console.log(pizzas);
+  const urlPizzas = 'https://6525555367cfb1e59ce71d24.mockapi.io/items';
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    fetch(urlPizzas)
+      .then((responce) => responce.json())
+      .then((json) => setPizzas(json));
+  }, []);
+
   return (
     <>
       <body>

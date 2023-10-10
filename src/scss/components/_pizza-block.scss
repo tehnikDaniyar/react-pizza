@@ -41,9 +41,10 @@
         cursor: pointer;
         font-weight: 600;
         font-size: 14px;
+        transition: all 0.2s ease 0s;
         @include noselect();
         &.active {
-          background: #ffffff;
+          background: rgb(173, 187, 148);
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
           border-radius: 5px;
           cursor: auto;
