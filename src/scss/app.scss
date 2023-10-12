@@ -26,13 +26,19 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    column-gap: 30px;
+    row-gap: 50px;
   }
 
   &__top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 150px;
+
+    @media (max-width: 996px) {
+      flex-direction: column;
+      gap: 30px;
+    }
   }
 }
 

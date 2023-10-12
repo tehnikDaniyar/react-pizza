@@ -14,7 +14,9 @@ export default function PizzaBlock({ title, price, imageUrl, id, types, sizes })
 
   return (
     <div className='pizza-block'>
-      <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+      <div className='pizza-block__image'>
+        <img src={imageUrl} alt='Pizza' />
+      </div>
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>

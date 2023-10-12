@@ -9,7 +9,7 @@ function App() {
     <>
       <body>
         <div className='wrapper'>
-          <Header />\
+          <Header />
           <div className='container'>
             <div className='content'>
               <Routes>
