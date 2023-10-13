@@ -1,3 +1,5 @@
+import React from 'react';
+import { useState } from 'react';
 import './scss/app.scss';
 import Header from './components/Header';
 import Home from './components/pages/Home';
@@ -5,6 +7,7 @@ import Home from './components/pages/Home';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
+  const [inlineResult, setInlineResult] = useState();
   return (
     <>
       <body>

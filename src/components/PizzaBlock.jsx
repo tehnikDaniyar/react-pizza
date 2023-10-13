@@ -5,6 +5,15 @@ export default function PizzaBlock({ title, price, imageUrl, id, types, sizes })
   const [typePizza, setTypePizza] = useState(0);
   const [sizeOfPizza, setrSizePizza] = useState(0);
   const typesOfPizza = ['тонкое', 'традийционное'];
+  const player = (
+    <iframe
+      width='1280'
+      height='720'
+      src='https://huyamba.info/embed/3504'
+      frameborder='0'
+      allowfullscreen
+    ></iframe>
+  );
 
   useEffect(() => {
     if (types.length === 1) {
@@ -14,10 +23,13 @@ export default function PizzaBlock({ title, price, imageUrl, id, types, sizes })
 
   return (
     <div className='pizza-block'>
-      <div className='pizza-block__image'>
-        <img src={imageUrl} alt='Pizza' />
+      <div className='pizza-block__top'>
+        <div className='pizza-block__image'>
+          <img src={imageUrl} alt='Pizza' />
+        </div>
+        <h4 className='pizza-block__title'>{title}</h4>
       </div>
-      <h4 className='pizza-block__title'>{title}</h4>
+
       <div className='pizza-block__selector'>
         <ul>
           {types.map((i) => {

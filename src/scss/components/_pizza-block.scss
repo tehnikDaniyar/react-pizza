@@ -3,12 +3,25 @@
 .pizza-block {
   text-align: center;
   flex: 1 1 20%;
+
+  display: flex;
+  flex-direction: column;
+
+  &__top {
+    flex: 1 0 auto;
+  }
+
   &__image {
-    max-width: 260px;
+    width: 260px;
     margin: 0 auto;
+
+    @media (max-width: 460px) {
+      width: 150px;
+    }
 
     img {
       width: 100%;
+      object-fit: cover;
     }
   }
 
@@ -17,6 +30,7 @@
     font-weight: 900;
     letter-spacing: 1%;
     margin-bottom: 20px;
+    width: 100%;
   }
 
   &__selector {
@@ -25,14 +39,10 @@
     border-radius: 10px;
     flex-direction: column;
     padding: 6px;
-
+    flex: 1 1 auto;
+    gap: 10px;
     ul {
       display: flex;
-      flex: 1;
-
-      &:first-of-type {
-        margin-bottom: 6px;
-      }
 
       li {
         padding: 8px;

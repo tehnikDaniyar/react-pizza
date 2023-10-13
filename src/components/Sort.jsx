@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 
-export default function Sort() {
-  const options = ['популярности', 'цене', 'алфавиту'];
+export default function Sort({ sortProperty, setSortProperty }) {
+  const options = [
+    { id: 0, title: 'популярности', value: 'rating' },
+    { id: 1, title: 'цене', value: 'price' },
+    { id: 2, title: 'алфавиту', value: 'title' },
+  ];
 
-  const [optionindex, setOptionIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-  function changeOption(index) {
-    console.log(index);
-    setOptionIndex(index);
-    setIsOpen(false);
+  function changeSort(obj) {
+    setSortProperty(obj);
+    setIsOpen(!isOpen);
   }
 
   return (
@@ -29,18 +31,18 @@ export default function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>{options[optionindex]}</span>
+        <span>{sortProperty.title}</span>
       </div>
       <div className={`sort__popup ${isOpen ? 'open' : ''}`}>
         <ul>
-          {options.map((item, index) => {
+          {options.map((obj, index) => {
             return (
               <li
                 key={index}
-                className={optionindex === index ? 'active' : ''}
-                onClick={() => changeOption(index)}
+                className={obj.id === index ? 'active' : ''}
+                onClick={() => changeSort(obj)}
               >
-                {item}
+                {obj.title}
               </li>
             );
           })}

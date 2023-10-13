@@ -7,23 +7,38 @@ import Skeleton from '../Skeleton';
 import ContentLoader from 'react-content-loader';
 
 function Home() {
-  const urlPizzas = 'https://6525555367cfb1e59ce71d24.mockapi.io/items';
+  const urlPizzas = new URL('https://6525555367cfb1e59ce71d24.mockapi.io/items');
+
+  const [categoryId, setCategoryid] = useState(0);
+  const [sortProperty, setSortProperty] = useState({
+    id: 0,
+    title: 'популярности',
+    value: 'rating',
+  });
+
   const [pizzas, setPizzas] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    console.log('category Id:', categoryId);
+    console.log('sort Id:', sortProperty);
+
+    categoryId && urlPizzas.searchParams.append('category', `${categoryId}`);
+    urlPizzas.searchParams.append('sortBy', `${sortProperty.value}`);
+
     fetch(urlPizzas)
       .then((responce) => responce.json())
       .then((json) => {
         setPizzas(json);
         setIsLoaded(true);
       });
-  }, []);
+  }, [categoryId, sortProperty]);
+
   return (
     <>
       <div className='content__top'>
-        <Categories />
-        <Sort />
+        <Categories categoryId={categoryId} setCategoryid={(i) => setCategoryid(i)} />
+        <Sort sortProperty={sortProperty} setSortProperty={(value) => setSortProperty(value)} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>
