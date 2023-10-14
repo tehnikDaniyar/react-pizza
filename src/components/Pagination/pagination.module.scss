@@ -1,0 +1,14 @@
+.item {
+  cursor: pointer;
+}
+
+.list {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: yellow;
+}

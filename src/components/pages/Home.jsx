@@ -4,9 +4,8 @@ import Categories from '../Categories';
 import Sort from '../Sort';
 import PizzaBlock from '../PizzaBlock';
 import Skeleton from '../Skeleton';
-import ContentLoader from 'react-content-loader';
 
-function Home() {
+function Home({ searchRequest }) {
   const urlPizzas = new URL('https://6525555367cfb1e59ce71d24.mockapi.io/items');
 
   const [categoryId, setCategoryid] = useState(0);
@@ -20,11 +19,9 @@ function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    console.log('category Id:', categoryId);
-    console.log('sort Id:', sortProperty);
-
     categoryId && urlPizzas.searchParams.append('category', `${categoryId}`);
     urlPizzas.searchParams.append('sortBy', `${sortProperty.value}`);
+    searchRequest && urlPizzas.searchParams.append('search', `${searchRequest}`);
 
     fetch(urlPizzas)
       .then((responce) => responce.json())
@@ -32,7 +29,7 @@ function Home() {
         setPizzas(json);
         setIsLoaded(true);
       });
-  }, [categoryId, sortProperty]);
+  }, [categoryId, sortProperty, searchRequest]);
 
   return (
     <>
