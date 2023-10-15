@@ -2,25 +2,26 @@ import { createSlice } from '@reduxjs/toolkit';
 import ContentLoader from 'react-content-loader';
 
 const initialState = {
-  value: 0,
+  value: 1,
 };
 
 export const paginationSlice = createSlice({
   name: 'pagination',
   initialState,
   reducers: {
-    changePage: (state, { i }) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value = i;
-      console.log('state of paginationSlice:', state.value);
+    changePage: (state, payload) => {
+      state.value = payload.payload;
+    },
+    nextPage: (state) => {
+      state.value += 1;
+    },
+    prevPage: (state) => {
+      state.value -= 1;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changePage } = paginationSlice.actions;
+export const { changePage, nextPage, prevPage } = paginationSlice.actions;
 
 export default paginationSlice.reducer;

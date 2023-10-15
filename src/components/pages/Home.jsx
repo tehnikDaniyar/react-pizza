@@ -4,37 +4,42 @@ import Categories from '../Categories';
 import Sort from '../Sort';
 import PizzaBlock from '../PizzaBlock';
 import Skeleton from '../Skeleton';
+import { useSelector } from 'react-redux';
 
 function Home({ searchRequest }) {
+  const categoryId = useSelector((state) => state.categories.value);
+  console.log('render Home', categoryId);
   const urlPizzas = new URL('https://6525555367cfb1e59ce71d24.mockapi.io/items');
 
-  const [categoryId, setCategoryid] = useState(0);
   const [sortProperty, setSortProperty] = useState({
     id: 0,
     title: 'популярности',
     value: 'rating',
   });
-
   const [pizzas, setPizzas] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const curentPage = useSelector((state) => state.pagination.value);
 
   useEffect(() => {
     categoryId && urlPizzas.searchParams.append('category', `${categoryId}`);
     urlPizzas.searchParams.append('sortBy', `${sortProperty.value}`);
+    urlPizzas.searchParams.append('limit', '3');
+    urlPizzas.searchParams.append('page', curentPage);
     searchRequest && urlPizzas.searchParams.append('search', `${searchRequest}`);
 
     fetch(urlPizzas)
       .then((responce) => responce.json())
       .then((json) => {
+        console.log('getted response');
         setPizzas(json);
         setIsLoaded(true);
       });
-  }, [categoryId, sortProperty, searchRequest]);
+  }, [categoryId, sortProperty, searchRequest, curentPage]);
 
   return (
     <>
       <div className='content__top'>
-        <Categories categoryId={categoryId} setCategoryid={(i) => setCategoryid(i)} />
+        <Categories />
         <Sort sortProperty={sortProperty} setSortProperty={(value) => setSortProperty(value)} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>

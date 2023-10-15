@@ -6,9 +6,15 @@
   display: flex;
   width: 30%;
   justify-content: space-between;
+  overflow: auto;
+  margin: 0 auto;
 }
 
 .button {
   padding: 10px 20px;
   background-color: yellow;
+
+  &.active {
+    background-color: rgb(247, 174, 155);
+  }
 }

@@ -1,10 +1,14 @@
 import iconSvg from '../assets/img/pizza-logo.svg';
 import Search from './search';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header({ searchRequest, setSearchRequest }) {
+  const numberPage = useSelector((state) => state.pagination.value);
+
   return (
     <div className='header'>
+      <p>{numberPage}</p>
       <div className='container'>
         <Link to={'/'} className='header__logo'>
           <img width='38' src={iconSvg} alt='Pizza logo' />

@@ -13,21 +13,19 @@ function App() {
 
   return (
     <>
-      <body>
-        <div className='wrapper'>
-          <Header searchRequest={searchRequest} setSearchRequest={setSearchRequest} />
-          <div className='container'>
-            <div className='content'>
-              <Routes>
-                <Route path='/' element={<Home searchRequest={searchRequest} />} />
-                <Route path='/cart' element={<h2>CART</h2>} />
-              </Routes>
-            </div>
+      <div className='wrapper'>
+        <Header searchRequest={searchRequest} setSearchRequest={setSearchRequest} />
+        <div className='container'>
+          <div className='content'>
+            <Routes>
+              <Route path='/' element={<Home searchRequest={searchRequest} />} />
+              <Route path='/cart' element={<h2>CART</h2>} />
+            </Routes>
           </div>
-          <Pagination amountPages={10} />
-          <Counter />
         </div>
-      </body>
+        <Pagination amountPages={4} />
+        <Counter />
+      </div>
     </>
   );
 }
