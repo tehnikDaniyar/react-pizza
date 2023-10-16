@@ -8,9 +8,8 @@ export const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    changeCategory: (state, payload) => {
-      console.log('action categoriy', payload.payload.value);
-      state.value = payload.payload.value;
+    changeCategory: (state, action) => {
+      state.value = action.payload;
     },
   },
 });

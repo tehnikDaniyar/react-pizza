@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSortProperty } from '../features/sort/sortSlice';
 
-export default function Sort({ sortProperty, setSortProperty }) {
+export default function Sort() {
   const options = [
     { id: 0, title: 'популярности', value: 'rating' },
     { id: 1, title: 'цене', value: 'price' },
@@ -9,10 +11,14 @@ export default function Sort({ sortProperty, setSortProperty }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function changeSort(obj) {
-    setSortProperty(obj);
-    setIsOpen(!isOpen);
-  }
+  // function changeSort(obj) {
+  //   setSortProperty(obj);
+  //   setIsOpen(!isOpen);
+  // }
+
+  const dispatch = useDispatch();
+  const sortProperty = useSelector((state) => state.sort.value);
+  console.log(sortProperty);
 
   return (
     <div className='sort'>
@@ -31,7 +37,7 @@ export default function Sort({ sortProperty, setSortProperty }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>{sortProperty.title}</span>
+        <span></span>
       </div>
       <div className={`sort__popup ${isOpen ? 'open' : ''}`}>
         <ul>
@@ -40,7 +46,7 @@ export default function Sort({ sortProperty, setSortProperty }) {
               <li
                 key={index}
                 className={obj.id === index ? 'active' : ''}
-                onClick={() => changeSort(obj)}
+                onClick={() => dispatch(setSortProperty(obj))}
               >
                 {obj.title}
               </li>

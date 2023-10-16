@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Categories from '../Categories';
 import Sort from '../Sort';
@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 function Home({ searchRequest }) {
   const categoryId = useSelector((state) => state.categories.value);
-  console.log('render Home', categoryId);
   const urlPizzas = new URL('https://6525555367cfb1e59ce71d24.mockapi.io/items');
 
   const [sortProperty, setSortProperty] = useState({
@@ -16,6 +15,7 @@ function Home({ searchRequest }) {
     title: 'популярности',
     value: 'rating',
   });
+
   const [pizzas, setPizzas] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const curentPage = useSelector((state) => state.pagination.value);
@@ -30,7 +30,6 @@ function Home({ searchRequest }) {
     fetch(urlPizzas)
       .then((responce) => responce.json())
       .then((json) => {
-        console.log('getted response');
         setPizzas(json);
         setIsLoaded(true);
       });

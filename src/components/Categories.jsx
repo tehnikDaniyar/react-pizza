@@ -6,7 +6,6 @@ export default function Categories() {
   const categoryId = useSelector((state) => state.categories.value);
   const dispatch = useDispatch();
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-  console.log(changeCategory);
 
   return (
     <div className='categories'>
