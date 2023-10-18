@@ -10,19 +10,14 @@ function Home({ searchRequest }) {
   const categoryId = useSelector((state) => state.categories.value);
   const urlPizzas = new URL('https://6525555367cfb1e59ce71d24.mockapi.io/items');
 
-  const [sortProperty, setSortProperty] = useState({
-    id: 0,
-    title: 'популярности',
-    value: 'rating',
-  });
-
   const [pizzas, setPizzas] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const curentPage = useSelector((state) => state.pagination.value);
+  const curentSort = useSelector((state) => state.sort.value);
 
   useEffect(() => {
     categoryId && urlPizzas.searchParams.append('category', `${categoryId}`);
-    urlPizzas.searchParams.append('sortBy', `${sortProperty.value}`);
+    urlPizzas.searchParams.append('sortBy', `${curentSort}`);
     urlPizzas.searchParams.append('limit', '3');
     urlPizzas.searchParams.append('page', curentPage);
     searchRequest && urlPizzas.searchParams.append('search', `${searchRequest}`);
@@ -33,13 +28,13 @@ function Home({ searchRequest }) {
         setPizzas(json);
         setIsLoaded(true);
       });
-  }, [categoryId, sortProperty, searchRequest, curentPage]);
+  }, [categoryId, curentSort, searchRequest, curentPage]);
 
   return (
     <>
       <div className='content__top'>
         <Categories />
-        <Sort sortProperty={sortProperty} setSortProperty={(value) => setSortProperty(value)} />
+        <Sort />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>

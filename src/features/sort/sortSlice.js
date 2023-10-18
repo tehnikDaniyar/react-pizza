@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
 
 export const sortSlice = createSlice({
   name: 'sort',
   initialState: {
-    id: 0,
-    title: 'популярности',
-    value: 'rating',
+    obj: {
+      id: 100,
+      title: 'популярности',
+      value: 'rating',
+    },
   },
   reducers: {
     setSortProperty: (state, action) => {
-      { ...state, ...action.payload }
-      
+      return { ...state.obj, ...action.payload };
     },
   },
 });

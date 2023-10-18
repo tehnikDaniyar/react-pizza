@@ -10,19 +10,18 @@ export default function Sort() {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // function changeSort(obj) {
-  //   setSortProperty(obj);
-  //   setIsOpen(!isOpen);
-  // }
-
   const dispatch = useDispatch();
-  const sortProperty = useSelector((state) => state.sort.value);
-  console.log(sortProperty);
+  const sortProperty = useSelector((state) => state.sort);
 
   return (
     <div className='sort'>
-      <div className='sort__label' onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className='sort__label'
+        onClick={() => {
+          setIsOpen(!isOpen);
+          console.log('click on sort__label');
+        }}
+      >
         <svg
           width='10'
           height='6'
@@ -37,7 +36,7 @@ export default function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span></span>
+        <span>{sortProperty.title}</span>
       </div>
       <div className={`sort__popup ${isOpen ? 'open' : ''}`}>
         <ul>
@@ -45,8 +44,11 @@ export default function Sort() {
             return (
               <li
                 key={index}
-                className={obj.id === index ? 'active' : ''}
-                onClick={() => dispatch(setSortProperty(obj))}
+                className={obj.id === sortProperty.id ? 'active' : ''}
+                onClick={() => {
+                  dispatch(setSortProperty(obj));
+                  setIsOpen(false);
+                }}
               >
                 {obj.title}
               </li>
