@@ -1,13 +1,18 @@
 import styles from './search.module.scss';
 import zoomIcon from '../../assets/search/zoom.svg';
 import closeIcon from '../../assets/search/close.svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchRequest } from '../../features/search/searchSlice';
 
-export default function Search({ searchRequest, setSearchRequest }) {
+export default function Search() {
+  const searchRequest = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.root}>
       <input
         value={searchRequest}
-        onChange={(e) => setSearchRequest(e.target.value)}
+        onChange={(e) => dispatch(setSearchRequest(e.target.value))}
         className={styles.input}
         type='text'
         placeholder='поиск.....'
@@ -18,7 +23,7 @@ export default function Search({ searchRequest, setSearchRequest }) {
           src={closeIcon}
           alt='zoom'
           className={styles.closeIcon}
-          onClick={() => setSearchRequest('')}
+          onClick={() => dispatch(setSearchRequest(''))}
         />
       )}
     </div>

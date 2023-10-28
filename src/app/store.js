@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import paginationReducer from '../features/pagination/paginationSlice';
 import categoriesReducer from '../features/categories/categoriesSlice';
+import searchReducer from '../features/search/searchSlice';
 import sortReducer from '../features/sort/sortSlice';
 
 export const store = configureStore({
@@ -10,5 +11,6 @@ export const store = configureStore({
     pagination: paginationReducer,
     categories: categoriesReducer,
     sort: sortReducer,
+    search: searchReducer,
   },
 });

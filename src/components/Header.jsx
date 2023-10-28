@@ -3,7 +3,7 @@ import Search from './search';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function Header({ searchRequest, setSearchRequest }) {
+export default function Header() {
   const numberPage = useSelector((state) => state.pagination.value);
 
   return (
@@ -17,7 +17,7 @@ export default function Header({ searchRequest, setSearchRequest }) {
             <p>самая вкусная пицца во вселенной</p>
           </div>
         </Link>
-        <Search searchRequest={searchRequest} setSearchRequest={setSearchRequest} />
+        <Search />
         <div className='header__cart'>
           <Link to='/cart' className='button button--cart'>
             <span>520 ₽</span>

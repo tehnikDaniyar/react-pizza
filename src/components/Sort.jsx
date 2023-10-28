@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSortProperty } from '../features/sort/sortSlice';
+import { setSortProperty, testFunction } from '../features/sort/sortSlice';
 
 export default function Sort() {
   const options = [
@@ -48,6 +48,7 @@ export default function Sort() {
                 onClick={() => {
                   dispatch(setSortProperty(obj));
                   setIsOpen(false);
+                  testFunction();
                 }}
               >
                 {obj.title}
